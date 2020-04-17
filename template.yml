@@ -9,7 +9,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: target/lambda-example-1.0-jar-with-dependencies.jar
-      Handler: com.cmoutafidis.lambdaexample.Handler
+      Handler: com.cmoutafidis.lambdaexample.handlers.Handler
       Runtime: java8
       Events:
         HelloWorldApi:

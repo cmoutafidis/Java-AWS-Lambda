@@ -1,7 +1,8 @@
-package com.cmoutafidis.lambdaexample;
+package com.cmoutafidis.lambdaexample.handlers;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.cmoutafidis.lambdaexample.gateways.GatewayResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
