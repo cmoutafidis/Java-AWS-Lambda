@@ -16,7 +16,7 @@ The project was build using IntelliJ. You can use the AWS Toolkit for IntelliJ t
 ├── /hello
 │   └── GET (Test Resource, returns your IP Address)
 └── /orders
-    │   ├── GET (Get All Orders
+    │   ├── GET (Get All Orders)
     │   └── POST (Create new Order)
     └── {order_id}
         ├── GET (Get Order by OrderId)
