@@ -17,6 +17,7 @@ public class CreateOrderHandler implements RequestHandler<Object, GatewayRespons
         final Order order = Common.GSON.fromJson(request.getBody(), Order.class);
 
         order.setOrderId(Common.ORDER_DAO.save(order));
+        lambdaLogger.log("Order created with id: " + order.getOrderId());
 
         return new GatewayResponse(Common.GSON.toJson(order), Common.JSON_HEADERS, 200);
     }
