@@ -34,3 +34,4 @@ out/
 *.ipr
 *.iws
 src/main/resources/config.properties
+.aws-sam
