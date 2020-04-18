@@ -7,7 +7,7 @@ import com.cmoutafidis.lambdaexample.model.Order;
 import com.cmoutafidis.lambdaexample.model.Request;
 import com.cmoutafidis.lambdaexample.utils.Common;
 
-public class UpdateOrderHandler implements RequestHandler<Object, GatewayResponse> {
+public class DeleteOrderHandler implements RequestHandler<Object, GatewayResponse> {
 
     @Override
     public GatewayResponse handleRequest(final Object event, final Context context) {
@@ -15,8 +15,8 @@ public class UpdateOrderHandler implements RequestHandler<Object, GatewayRespons
         final Order order = Common.GSON.fromJson(request.getBody(), Order.class);
         order.setOrderId(request.getPathParameters().get("order_id"));
 
-        if (Common.ORDER_DAO.update(order)) {
-            return new GatewayResponse(Common.GSON.toJson(order), Common.JSON_HEADERS, 200);
+        if (Common.ORDER_DAO.delete(order)) {
+            return new GatewayResponse("{}", Common.JSON_HEADERS, 200);
         } else {
             return new GatewayResponse("{}", Common.JSON_HEADERS, 400);
         }

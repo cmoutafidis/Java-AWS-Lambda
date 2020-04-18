@@ -1,6 +1,7 @@
 package com.cmoutafidis.lambdaexample.dao;
 
 import com.amazonaws.services.dynamodbv2.document.Item;
+import com.amazonaws.services.dynamodbv2.document.spec.DeleteItemSpec;
 import com.amazonaws.services.dynamodbv2.document.spec.PutItemSpec;
 import com.amazonaws.services.dynamodbv2.document.spec.QuerySpec;
 import com.amazonaws.services.dynamodbv2.document.spec.UpdateItemSpec;
@@ -78,7 +79,15 @@ public class OrderDao extends Dao<Order> {
     }
 
     @Override
-    public void delete(final Order order) {
-
+    public boolean delete(final Order order) {
+        try {
+            this.getDynamoDB().getTable(this.getDynamoDbTableName()).deleteItem(new DeleteItemSpec()
+                    .withPrimaryKey("OrderId", order.getOrderId(), "CustomerId", order.getCustomerId()));
+            return true;
+        } catch (final Exception e) {
+            System.err.println("Unable to delete item: " + Common.GSON.toJson(order));
+            System.err.println(e.getMessage());
+            return false;
+        }
     }
 }

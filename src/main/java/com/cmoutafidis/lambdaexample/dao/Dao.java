@@ -48,5 +48,5 @@ public abstract class Dao<T> {
 
     public abstract boolean update(T t);
 
-    public abstract void delete(T t);
+    public abstract boolean delete(T t);
 }
