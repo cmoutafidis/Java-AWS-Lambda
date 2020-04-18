@@ -21,5 +21,5 @@ The project was build using IntelliJ. You can use the AWS Toolkit for IntelliJ t
     └── {order_id}
         ├── GET (Get Order by OrderId)
         ├── PUT (Update Order by OrderId && CustomerId)
-        └── DELETE (Update Order by OrderId && CustomerId)
+        └── DELETE (Delete Order by OrderId && CustomerId)
 ```
