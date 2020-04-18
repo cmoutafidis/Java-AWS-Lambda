@@ -1,14 +1,27 @@
 package com.cmoutafidis.lambdaexample.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Order {
 
+    @SerializedName("OrderId")
     private String orderId;
+    @SerializedName("CustomerId")
     private String customerId;
+    @SerializedName("OrderName")
     private String orderName;
+    @SerializedName("OrderDescription")
     private String orderDescription;
 
     public Order() {
 
+    }
+
+    public Order(final String orderId, final String customerId, final String orderName, final String orderDescription) {
+        this.orderId = orderId;
+        this.customerId = customerId;
+        this.orderName = orderName;
+        this.orderDescription = orderDescription;
     }
 
     public String getOrderId() {

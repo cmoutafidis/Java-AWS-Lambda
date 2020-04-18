@@ -32,5 +32,35 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref BasicAWSApiGateway
-            Path: /order/create
+            Path: /orders
             Method: POST
+
+  GetAllOrderFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: target/lambda-example-1.0-jar-with-dependencies.jar
+      Handler: com.cmoutafidis.lambdaexample.handler.GetAllOrderHandler
+      Runtime: java8
+      Timeout: 300
+      Events:
+        HelloWorldApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BasicAWSApiGateway
+            Path: /orders
+            Method: GET
+
+  GetOrderFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: target/lambda-example-1.0-jar-with-dependencies.jar
+      Handler: com.cmoutafidis.lambdaexample.handler.GetOrderHandler
+      Runtime: java8
+      Timeout: 300
+      Events:
+        HelloWorldApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BasicAWSApiGateway
+            Path: /orders/{order_id}
+            Method: GET

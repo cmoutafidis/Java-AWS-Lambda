@@ -8,7 +8,6 @@ import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.cmoutafidis.lambdaexample.utils.Common;
 
 import java.util.List;
-import java.util.Optional;
 
 public abstract class Dao<T> {
 
@@ -41,7 +40,7 @@ public abstract class Dao<T> {
         return this.dynamoDB;
     }
 
-    public abstract Optional<T> get(long id);
+    public abstract T get(String id);
 
     public abstract List<T> getAll();
 
