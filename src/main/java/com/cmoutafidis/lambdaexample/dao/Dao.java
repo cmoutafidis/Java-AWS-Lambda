@@ -46,7 +46,7 @@ public abstract class Dao<T> {
 
     public abstract String save(T t);
 
-    public abstract void update(T t, String[] params);
+    public abstract boolean update(T t);
 
     public abstract void delete(T t);
 }

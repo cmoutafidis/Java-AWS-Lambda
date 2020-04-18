@@ -3,8 +3,10 @@ package com.cmoutafidis.lambdaexample.dao;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.spec.PutItemSpec;
 import com.amazonaws.services.dynamodbv2.document.spec.QuerySpec;
+import com.amazonaws.services.dynamodbv2.document.spec.UpdateItemSpec;
 import com.amazonaws.services.dynamodbv2.document.utils.ValueMap;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.ReturnValue;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
 import com.cmoutafidis.lambdaexample.model.Order;
@@ -60,8 +62,19 @@ public class OrderDao extends Dao<Order> {
     }
 
     @Override
-    public void update(final Order order, final String[] params) {
-
+    public boolean update(final Order order) {
+        try {
+            this.getDynamoDB().getTable(this.getDynamoDbTableName()).updateItem(new UpdateItemSpec()
+                    .withPrimaryKey("OrderId", order.getOrderId(), "CustomerId", order.getCustomerId())
+                    .withUpdateExpression("set OrderName = :n, OrderDescription = :d")
+                    .withValueMap(new ValueMap().withString(":n", order.getOrderName()).withString(":d", order.getOrderDescription()))
+                    .withReturnValues(ReturnValue.UPDATED_NEW));
+            return true;
+        } catch (final Exception e) {
+            System.err.println("Unable to update item: " + Common.GSON.toJson(order));
+            System.err.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override
