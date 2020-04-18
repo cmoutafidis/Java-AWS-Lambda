@@ -9,8 +9,9 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: target/lambda-example-1.0-jar-with-dependencies.jar
-      Handler: com.cmoutafidis.lambdaexample.handlers.Handler
+      Handler: com.cmoutafidis.lambdaexample.handler.HelloHandler
       Runtime: java8
+      Timeout: 300
       Events:
         HelloWorldApi:
           Type: Api
@@ -18,3 +19,18 @@ Resources:
             RestApiId: !Ref BasicAWSApiGateway
             Path: /hello
             Method: GET
+
+  CreateOrderFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: target/lambda-example-1.0-jar-with-dependencies.jar
+      Handler: com.cmoutafidis.lambdaexample.handler.CreateOrderHandler
+      Runtime: java8
+      Timeout: 300
+      Events:
+        HelloWorldApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BasicAWSApiGateway
+            Path: /order/create
+            Method: POST

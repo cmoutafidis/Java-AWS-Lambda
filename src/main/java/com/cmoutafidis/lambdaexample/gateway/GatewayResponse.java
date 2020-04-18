@@ -1,4 +1,4 @@
-package com.cmoutafidis.lambdaexample.gateways;
+package com.cmoutafidis.lambdaexample.gateway;
 
 import java.util.Collections;
 import java.util.HashMap;
